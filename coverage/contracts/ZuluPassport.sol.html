@@ -1,0 +1,524 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for contracts/ZuluPassport.sol</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="../prettify.css" />
+    <link rel="stylesheet" href="../base.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style type='text/css'>
+        .coverage-summary .sorter {
+            background-image: url(../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class='wrapper'>
+  <div class='pad1'>
+    <h1>
+      <a href="../index.html">all files</a> / <a href="index.html">contracts/</a> ZuluPassport.sol
+    </h1>
+    <div class='clearfix'>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">100% </span>
+        <span class="quiet">Statements</span>
+        <span class='fraction'>27/27</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">100% </span>
+        <span class="quiet">Branches</span>
+        <span class='fraction'>14/14</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">100% </span>
+        <span class="quiet">Functions</span>
+        <span class='fraction'>9/9</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">100% </span>
+        <span class="quiet">Lines</span>
+        <span class='fraction'>30/30</span>
+      </div>
+    </div>
+  </div>
+  <div class='status-line high'></div>
+<pre><table class="coverage">
+<tr><td class="line-count quiet">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147
+148
+149
+150
+151
+152
+153
+154</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">149×</span>
+<span class="cline-any cline-yes">149×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">149×</span>
+<span class="cline-any cline-yes">147×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">129×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">125×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">125×</span>
+<span class="cline-any cline-yes">125×</span>
+<span class="cline-any cline-yes">125×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">5×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">90×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">18×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">14×</span>
+<span class="cline-any cline-yes">14×</span>
+<span class="cline-any cline-yes">14×</span>
+<span class="cline-any cline-yes">14×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">5×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">pragma solidity 0.4.24;
+&nbsp;
+import "zeppelin-solidity/contracts/math/SafeMath.sol";
+import "./upgradeable/OwnableUpgradeable.sol";
+&nbsp;
+&nbsp;
+/**
+ * @title ZuluPassport - members of the zulu republic
+ * @author Gustavo Guimaraes - &lt;gustavo@zulurepublic.io&gt;
+ */
+contract ZuluPassport is OwnableUpgradeable {
+    using SafeMath for uint256;
+&nbsp;
+    struct Citizen {
+        bool isCitizen;
+        bytes32 passportData;
+    }
+&nbsp;
+    struct Merchant {
+        bool isMerchant;
+        bytes32 registryData;
+    }
+&nbsp;
+    uint256 public numOfCitizens;
+    uint256 public numOfMerchants;
+&nbsp;
+    mapping (address =&gt; Citizen) public citizen;
+    mapping (address =&gt; Merchant) public store;
+&nbsp;
+    event LogCitizen(address indexed citizenAddress, string action);
+    event LogMerchant(address indexed merchantAddress, string action);
+&nbsp;
+    modifier isNotContract(address addr) {
+        uint256 size;
+        assembly { size := extcodesize(addr) }
+&nbsp;
+        require(size == 0);
+        _;
+    }
+&nbsp;
+    /**
+     * @dev Add citizen
+     * @param citizenAddress Must be an externally owned account
+     * @param passportData Encrypted data about the citizen
+     */
+    function addCitizen(address citizenAddress, bytes32 passportData)
+        public
+        onlyOwner
+        isNotContract(citizenAddress)
+    {
+        require(
+            citizenAddress != address(0) &amp;&amp;
+            passportData != 0 &amp;&amp;
+            !citizen[citizenAddress].isCitizen &amp;&amp;
+            !store[citizenAddress].isMerchant
+        );
+&nbsp;
+        numOfCitizens = numOfCitizens.add(1);
+&nbsp;
+        citizen[citizenAddress].passportData = passportData;
+        citizen[citizenAddress].isCitizen = true;
+        emit LogCitizen(citizenAddress, "add");
+    }
+&nbsp;
+    /**
+     * @dev Update citizen passport
+     * @param citizenAddress Address of citizen who is already in the ZuluPassport contract
+     * @param newPassportData Update of the encrypted data about the citizen
+     */
+    function updateCitizen(address citizenAddress, bytes32 newPassportData) public onlyOwner {
+        require(citizenAddress != address(0) &amp;&amp; newPassportData != 0 &amp;&amp; citizen[citizenAddress].isCitizen);
+&nbsp;
+        citizen[citizenAddress].passportData = newPassportData;
+        emit LogCitizen(citizenAddress, "update");
+    }
+&nbsp;
+    /**
+     * @dev Remove citizen
+     * @param citizenAddress Address of citizen who is already in the ZuluPassport contract
+     */
+    function removeCitizen(address citizenAddress) public onlyOwner {
+        require(citizenAddress != address(0) &amp;&amp; citizen[citizenAddress].isCitizen);
+&nbsp;
+        numOfCitizens = numOfCitizens.sub(1);
+        citizen[citizenAddress].isCitizen = false;
+        emit LogCitizen(citizenAddress, "remove");
+    }
+&nbsp;
+    /**
+     * @dev Convinience function for checking whether an eth address is citizen
+     * @param citizenAddress Address to check
+     * @return bool
+     */
+    function isCitizen(address citizenAddress) public view returns (bool) {
+        return citizen[citizenAddress].isCitizen;
+    }
+&nbsp;
+    /**
+     * @dev Add store
+     * @param merchantAddress Must be an externally owned account
+     * @param registryData Encrypted data about the merchant
+     */
+    function addMerchant(address merchantAddress, bytes32 registryData)
+        public
+        onlyOwner
+        isNotContract(merchantAddress)
+    {
+        require(
+            merchantAddress != address(0) &amp;&amp;
+            registryData != 0 &amp;&amp;
+            !store[merchantAddress].isMerchant &amp;&amp;
+            !citizen[merchantAddress].isCitizen
+        );
+&nbsp;
+        numOfMerchants = numOfMerchants.add(1);
+        store[merchantAddress].registryData = registryData;
+        store[merchantAddress].isMerchant = true;
+        emit LogMerchant(merchantAddress, "add");
+    }
+&nbsp;
+    /**
+     * @dev Update store registry
+     * @param merchantAddress Address of merchant
+     * @param newRegistryData Update of the encrypted data about the merchant
+     */
+    function updateMerchant(address merchantAddress, bytes32 newRegistryData) public onlyOwner {
+        require(merchantAddress != address(0) &amp;&amp; newRegistryData != 0 &amp;&amp; store[merchantAddress].isMerchant);
+&nbsp;
+        store[merchantAddress].registryData = newRegistryData;
+        emit LogMerchant(merchantAddress, "update");
+    }
+&nbsp;
+    /**
+     * @dev Remove store
+     * @param merchantAddress Address of merchant
+     */
+    function removeMerchant(address merchantAddress) public onlyOwner {
+        require(merchantAddress != address(0) &amp;&amp; store[merchantAddress].isMerchant);
+&nbsp;
+        numOfMerchants = numOfMerchants.sub(1);
+        store[merchantAddress].isMerchant = false;
+        emit LogMerchant(merchantAddress, "remove");
+    }
+&nbsp;
+    /**
+     * @dev Check whether eth address is merchant
+     * @param merchantAddress Address to check
+     * @return bool
+     */
+    function isMerchant(address merchantAddress) public view returns (bool) {
+        return store[merchantAddress].isMerchant;
+    }
+}
+&nbsp;</pre></td></tr>
+</table></pre>
+<div class='push'></div><!-- for sticky footer -->
+</div><!-- /wrapper -->
+<div class='footer quiet pad2 space-top1 center small'>
+  Code coverage
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Wed Aug 01 2018 09:19:09 GMT+0200 (CEST)
+</div>
+</div>
+<script src="../prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="../sorter.js"></script>
+</body>
+</html>

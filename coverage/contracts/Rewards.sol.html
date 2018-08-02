@@ -1,0 +1,503 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for contracts/Rewards.sol</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="../prettify.css" />
+    <link rel="stylesheet" href="../base.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style type='text/css'>
+        .coverage-summary .sorter {
+            background-image: url(../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class='wrapper'>
+  <div class='pad1'>
+    <h1>
+      <a href="../index.html">all files</a> / <a href="index.html">contracts/</a> Rewards.sol
+    </h1>
+    <div class='clearfix'>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">100% </span>
+        <span class="quiet">Statements</span>
+        <span class='fraction'>28/28</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">80% </span>
+        <span class="quiet">Branches</span>
+        <span class='fraction'>8/10</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">100% </span>
+        <span class="quiet">Functions</span>
+        <span class='fraction'>8/8</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">100% </span>
+        <span class="quiet">Lines</span>
+        <span class='fraction'>31/31</span>
+      </div>
+    </div>
+  </div>
+  <div class='status-line high'></div>
+<pre><table class="coverage">
+<tr><td class="line-count quiet">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">30×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">30×</span>
+<span class="cline-any cline-yes">30×</span>
+<span class="cline-any cline-yes">30×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">30×</span>
+<span class="cline-any cline-yes">30×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">5×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4×</span>
+<span class="cline-any cline-yes">4×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4×</span>
+<span class="cline-any cline-yes">4×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">pragma solidity 0.4.24;
+&nbsp;
+import "zeppelin-solidity/contracts/ownership/Ownable.sol";
+import "zeppelin-solidity/contracts/math/SafeMath.sol";
+import "./ZuluToken.sol";
+import "./ZuluPassport.sol";
+import "./VotableInterface.sol";
+&nbsp;
+&nbsp;
+/**
+ * @title Rewards contract - setting rules for the use of reserve tokens as rewards for Zulu Republic's citizens
+ * @author Gustavo Guimaraes - &lt;gustavo@zulurepublic.io&gt;
+ */
+contract Rewards is Ownable {
+    using SafeMath for uint256;
+    address public zuluFoundation;
+    uint256 public nextZuluFoundationPayment;
+    uint256 public counterForFoundationPayout;
+    bool public isCashBackEnabled;
+&nbsp;
+    // external contract
+    ZuluPassport public passport;
+    VotableInterface public votable;
+    ZuluToken public token;
+&nbsp;
+    uint256 public tokensToRedeem;
+    mapping (address =&gt; uint256) public redeemableTokens;
+&nbsp;
+    event CashBackToggled(bool state);
+    event CashBackRedeemed(address indexed citizen, uint256 value);
+    event CashBackTriggered(address indexed citizen, uint256 value);
+&nbsp;
+    /**
+     * @dev Contract constructor function
+     * @param _passport Zulu passport contract address
+     * @param _votable VotableInterface contract address
+     * @param _votable ZuluToken contract address
+     * @param _zuluFoundation Address of the Zulu Foundation
+     */
+    constructor(
+        address _passport,
+        address _votable,
+        address _token,
+        address _zuluFoundation
+    )
+        public
+    {
+&nbsp;
+        <span class="missing-if-branch" title="else path not taken" >E</span>require(
+            _passport != address(0) &amp;&amp;
+            _votable != address(0) &amp;&amp;
+            _zuluFoundation != address(0)
+        );
+&nbsp;
+        passport = ZuluPassport(_passport);
+        votable = VotableInterface(_votable);
+        token = ZuluToken(_token);
+&nbsp;
+        isCashBackEnabled = true;
+        zuluFoundation = _zuluFoundation;
+    }
+&nbsp;
+    /**
+     * @dev Toggle cash back flag
+     */
+    function toggleCashBack() external onlyOwner {
+        isCashBackEnabled = !isCashBackEnabled;
+        emit CashBackToggled(isCashBackEnabled);
+    }
+&nbsp;
+    /**
+     * @dev Mint more tokens to rewards address
+     * @param _amount Amount of tokens to be minted for rewards contract
+     */
+    function mintTokensForRewardsContract(uint256 _amount) external {
+        <span class="missing-if-branch" title="else path not taken" >E</span>require(votable != address(0) &amp;&amp; _amount != 0);
+&nbsp;
+        bytes32 hashMsg = keccak256(abi.encodePacked(
+            _amount,
+            keccak256(abi.encodePacked("numTokensToMintForRewardsContract"))
+            ));
+&nbsp;
+        require(votable.getHasBeenSuccessful(hashMsg));
+&nbsp;
+        votable.implementSuccessfulVotingOnRewardsTokens(hashMsg);
+        token.mint(address(this), _amount);
+    }
+&nbsp;
+    /**
+     * @dev Pay percentage of reserve tokens to Zulu Foundation annually
+     */
+    function payoutFoundationFromReserve() external {
+        require(now &gt;= nextZuluFoundationPayment &amp;&amp; counterForFoundationPayout &lt; votable.maxYearsForFoundationPayout());
+&nbsp;
+        uint256 tokensAvailable = token.balanceOf(this).sub(tokensToRedeem);
+        uint256 tokensForFoundationFromReserve = tokensAvailable.mul(votable.foundationPayoutPercentage()).div(100);
+&nbsp;
+        nextZuluFoundationPayment = now.add(365 days);
+        counterForFoundationPayout = counterForFoundationPayout.add(1);
+&nbsp;
+        token.transfer(zuluFoundation, tokensForFoundationFromReserve);
+    }
+&nbsp;
+    /**
+     * @dev Redeem accrued cashback tokens
+     */
+    function redeemCashback() external returns(bool) {
+        uint256 tokens = redeemableTokens[msg.sender];
+        redeemableTokens[msg.sender] = 0;
+&nbsp;
+        tokensToRedeem = tokensToRedeem.sub(tokens);
+        emit CashBackRedeemed(msg.sender, tokens);
+        return token.transfer(msg.sender, tokens);
+    }
+&nbsp;
+    /**
+     * @dev Provide tokens for cashback. Only callable by owner
+     * @param _from Citizen's address
+     * @param _to Merchant's address
+     * @param _value Amount exchanged between citizen and merchant
+     */
+    function giveOutCashBack(address _from, address _to, uint256 _value) external onlyOwner {
+        uint256 cashbackValue = _value.mul(votable.cashBackPercentage()).div(100);
+&nbsp;
+        if (
+            isCashBackEnabled &amp;&amp;
+            tokensToRedeem.add(cashbackValue) &lt;= rewardsBalance() &amp;&amp;
+            passport.isCitizen(_from) &amp;&amp;
+            passport.isMerchant(_to)
+        ) {
+&nbsp;
+            cashback(_from, cashbackValue);
+        }
+    }
+&nbsp;
+    function cashback(address beneficiary, uint256 _value) internal {
+        redeemableTokens[beneficiary] = redeemableTokens[beneficiary].add(_value);
+        tokensToRedeem = tokensToRedeem.add(_value);
+&nbsp;
+        emit CashBackTriggered(beneficiary, _value);
+    }
+&nbsp;
+    function rewardsBalance() internal view returns(uint256) {
+        return token.balanceOf(this).sub(tokensToRedeem);
+    }
+}
+&nbsp;</pre></td></tr>
+</table></pre>
+<div class='push'></div><!-- for sticky footer -->
+</div><!-- /wrapper -->
+<div class='footer quiet pad2 space-top1 center small'>
+  Code coverage
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Wed Aug 01 2018 09:19:09 GMT+0200 (CEST)
+</div>
+</div>
+<script src="../prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="../sorter.js"></script>
+</body>
+</html>
