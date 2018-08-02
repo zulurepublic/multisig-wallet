@@ -4,6 +4,7 @@ const deployMultisig = (owners, confirmations) => {
 };
 
 const {
+    should,
     balanceOf,
     getParamFromTxEvent,
     assertThrowsAsynchronously
@@ -23,7 +24,7 @@ contract('MultiSigWallet', accounts => {
             [accounts[0], accounts[1], accounts[2]],
             requiredConfirmations
         );
-        assert.ok(multisigInstance);
+        expect(multisigInstance).to.exist;
     });
 
     it('test execution after requirements changed', async () => {
@@ -42,7 +43,7 @@ contract('MultiSigWallet', accounts => {
             )
         );
         const balance = await balanceOf(web3, multisigInstance.address);
-        assert.equal(balance.valueOf(), deposit);
+        balance.valueOf().should.be.bignumber.equal(deposit);
 
         // Add owner wa_4
         const addOwnerData = multisigInstance.contract.addOwner.getData(
@@ -104,10 +105,10 @@ contract('MultiSigWallet', accounts => {
         await multisigInstance.confirmTransaction(transactionId2, {
             from: accounts[1]
         });
-        assert.equal(
-            (await multisigInstance.required()).toNumber(),
-            newRequired
-        );
+
+        const requiredConf = await multisigInstance.required();
+        requiredConf.should.be.bignumber.equal(newRequired);
+
         assert.deepEqual(
             await multisigInstance.getTransactionIds(
                 0,

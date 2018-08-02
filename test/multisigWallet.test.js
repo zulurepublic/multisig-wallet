@@ -12,7 +12,7 @@ const deployCalls = () => {
     return TestCalls.new();
 };
 
-const { balanceOf, getParamFromTxEvent } = require('./helpers/utils');
+const { should, balanceOf, getParamFromTxEvent } = require('./helpers/utils');
 
 contract('MultiSigWallet', accounts => {
     let multisigInstance;
@@ -25,11 +25,11 @@ contract('MultiSigWallet', accounts => {
             [accounts[0], accounts[1]],
             requiredConfirmations
         );
-        assert.ok(multisigInstance);
+        expect(multisigInstance).to.exist;
         tokenInstance = await deployToken();
-        assert.ok(tokenInstance);
+        expect(tokenInstance).to.exist;
         callsInstance = await deployCalls();
-        assert.ok(callsInstance);
+        expect(callsInstance).to.exist;
 
         const deposit = 10000000;
 
@@ -45,7 +45,7 @@ contract('MultiSigWallet', accounts => {
             )
         );
         const balance = await balanceOf(web3, multisigInstance.address);
-        assert.equal(balance.valueOf(), deposit);
+        balance.valueOf().should.be.bignumber.equal(deposit);
     });
 
     it('transferWithPayloadSizeCheck', async () => {
@@ -55,7 +55,7 @@ contract('MultiSigWallet', accounts => {
             1000000,
             { from: accounts[0] }
         );
-        assert.ok(issueResult);
+        expect(issueResult).to.exist;
         // Encode transfer call for the multisig
         const transferEncoded = tokenInstance.contract.transfer.getData(
             accounts[1],
@@ -82,9 +82,10 @@ contract('MultiSigWallet', accounts => {
             'Execution'
         );
         // Check that transaction has been executed
-        assert.ok(transactionId.equals(executedTransactionId));
+        expect(transactionId.equals(executedTransactionId)).to.exist;
         // Check that the transfer has actually occured
-        assert.equal(1000000, await tokenInstance.balanceOf(accounts[1]));
+        const balanceOfAccount1 = await tokenInstance.balanceOf(accounts[1]);
+        balanceOfAccount1.should.be.bignumber.equal(1000000);
     });
 
     it('transferFailure', async () => {
@@ -114,23 +115,8 @@ contract('MultiSigWallet', accounts => {
             'ExecutionFailure'
         );
         // Check that transaction has been executed
-        assert.ok(transactionId.equals(failedTransactionId));
+        expect(transactionId.equals(failedTransactionId)).to.exist;
     });
-
-    // The test below can only work if the Multisig wallet allows non-zero destinations (that enables creation of contracts)
-    // This is mainly to test the gas dynamics between the multisig and the callee contract
-    /*
-    it('createTestCalls', async () => {
-        const transactionId = getParamFromTxEvent(
-            await multisigInstance.submitTransaction("0x0000000000000000000000000000000000000000", 0, TestCalls.binary, {from: accounts[0]}),
-            'transactionId', null, 'Submission')
-        execResult = await multisigInstance.confirmTransaction(transactionId, {from: accounts[1]})
-        // Could not find a way to extract the receipt from the nested transaction to obtain the created contract address
-        const executedTransactionId = getParamFromTxEvent(execResult, 'transactionId', null, 'Execution')
-        // Check that transaction has been executed
-        assert.ok(transactionId.equals(executedTransactionId))
-    })
-    */
 
     it('callReceive1uint', async () => {
         // Encode call for the multisig
@@ -158,11 +144,17 @@ contract('MultiSigWallet', accounts => {
             'Execution'
         );
         // Check that transaction has been executed
-        assert.ok(transactionId.equals(executedTransactionId));
+        expect(transactionId.equals(executedTransactionId)).to.exist;
         // Check that the expected parameters and values were passed
-        assert.equal(12345, await callsInstance.uint1());
-        assert.equal(32 + 4, await callsInstance.lastMsgDataLength());
-        assert.equal(67890, await callsInstance.lastMsgValue());
+
+        const callsInstanceUint1 = await callsInstance.uint1();
+        callsInstanceUint1.should.be.bignumber.equal(12345);
+
+        const callsInstanceLastMessageDataLength = await callsInstance.lastMsgDataLength();
+        callsInstanceLastMessageDataLength.should.be.bignumber.equal(32 + 4);
+
+        const callsInstanceLastMessage = await callsInstance.lastMsgValue();
+        callsInstanceLastMessage.should.be.bignumber.equal(67890);
     });
 
     it('callReceive2uint', async () => {
@@ -192,12 +184,22 @@ contract('MultiSigWallet', accounts => {
             'Execution'
         );
         // Check that transaction has been executed
-        assert.ok(transactionId.equals(executedTransactionId));
+        expect(transactionId.equals(executedTransactionId)).to.exist;
         // Check that the expected parameters and values were passed
-        assert.equal(12345, await callsInstance.uint1());
-        assert.equal(67890, await callsInstance.uint2());
-        assert.equal(32 + 32 + 4, await callsInstance.lastMsgDataLength());
-        assert.equal(4040404, await callsInstance.lastMsgValue());
+
+        const callsInstanceUint1 = await callsInstance.uint1();
+        callsInstanceUint1.should.be.bignumber.equal(12345);
+
+        const callsInstanceUint2 = await callsInstance.uint2();
+        callsInstanceUint2.should.be.bignumber.equal(67890);
+
+        const callsInstanceLastMessageDataLength = await callsInstance.lastMsgDataLength();
+        callsInstanceLastMessageDataLength.should.be.bignumber.equal(
+            32 + 32 + 4
+        );
+
+        const callsInstanceLastMessage = await callsInstance.lastMsgValue();
+        callsInstanceLastMessage.should.be.bignumber.equal(4040404);
     });
 
     it('callReceive1bytes', async () => {
@@ -228,13 +230,17 @@ contract('MultiSigWallet', accounts => {
             'Execution'
         );
         // Check that transaction has been executed
-        assert.ok(transactionId.equals(executedTransactionId));
+        expect(transactionId.equals(executedTransactionId)).to.exist;
         // Check that the expected parameters and values were passed
-        assert.equal(
-            868, // 800 bytes data + 32 bytes offset + 32 bytes data length + 4 bytes method signature
-            await callsInstance.lastMsgDataLength()
-        );
-        assert.equal(10, await callsInstance.lastMsgValue());
-        assert.equal(dataHex, await callsInstance.byteArray1());
+
+        const callsInstanceLastMessageDataLength = await callsInstance.lastMsgDataLength();
+        // 800 bytes data + 32 bytes offset + 32 bytes data length + 4 bytes method signature
+        callsInstanceLastMessageDataLength.should.be.bignumber.equal(868);
+
+        const callsInstanceLastMessage = await callsInstance.lastMsgValue();
+        callsInstanceLastMessage.should.be.bignumber.equal(10);
+
+        const byteArray1 = await callsInstance.byteArray1();
+        byteArray1.should.be.bignumber.equal(dataHex);
     });
 });
