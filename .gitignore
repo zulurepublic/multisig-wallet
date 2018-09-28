@@ -1,9 +1,6 @@
 node_modules
 /build
 
-/flats
-.DS_Store
-
 # coverage files
 coverage
 coverage.json
